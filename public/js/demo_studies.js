@@ -39,7 +39,7 @@ $(function () {
                 .append($('<img>').prop('src', photo.media$group.media$thumbnail[0].url.replace("s72", "s72-c-k")))
                 //.append($('<img>').prop('class', 'thumbnail'))
                 .prop('href', photo.content.src)
-                .prop('title', photo.title.$t + ':' + photo.media$group.media$description.$t)
+                .prop('title', photo.title.$t)
                 .attr('data-gallery', '')
                 .appendTo(linksContainer);
         });
