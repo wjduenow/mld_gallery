@@ -19,26 +19,27 @@ $(function () {
     $.ajax({
         // Flickr API is SSL only:
         // https://code.flickr.net/2014/04/30/flickr-api-going-ssl-only-on-june-27th-2014/
-        url: 'https://api.flickr.com/services/rest/',
-        data: {
-            format: 'json',
-            method: 'flickr.photosets.getPhotos',
-            api_key: '7617adae70159d09ba78cfec73c13be3',
-            photoset_id: '72157648026319644' // jshint ignore:line
-        },
-        dataType: 'jsonp',
-        jsonp: 'jsoncallback'
+        url: 'https://picasaweb.google.com/data/feed/base/user/113878952227197152049/albumid/6105847204407203745?alt=json',
+        //data: {
+        //    #format: 'json',
+        //    #method: 'flickr.photosets.getPhotos',
+        //    #api_key: '7617adae70159d09ba78cfec73c13be3',
+        //    #photoset_id: '72157648025811824' // jshint ignore:line
+        //},
+        //dataType: 'jsonp',
+        //jsonp: 'jsoncallback'
     }).done(function (result) {
         var linksContainer = $('#links_studies'),
             baseUrl;
         // Add the demo images as links with thumbnails to the page:
-        $.each(result.photoset.photo, function (index, photo) {
+        $.each(result.feed.entry, function (index, photo) {
             baseUrl = 'https://farm' + photo.farm + '.static.flickr.com/' +
                 photo.server + '/' + photo.id + '_' + photo.secret;
             $('<a/>')
-                .append($('<img>').prop('src', baseUrl + '_s.jpg'))
-                .prop('href', baseUrl + '_b.jpg')
-                .prop('title', photo.title)
+                .append($('<img>').prop('src', photo.media$group.media$thumbnail[0].url.replace("s72", "s72-c-k")))
+                //.append($('<img>').prop('class', 'thumbnail'))
+                .prop('href', photo.content.src)
+                .prop('title', photo.title.$t + ':' + photo.media$group.media$description.$t)
                 .attr('data-gallery', '')
                 .appendTo(linksContainer);
         });

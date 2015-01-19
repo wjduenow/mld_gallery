@@ -3,7 +3,7 @@ version: baseline
 
 runtime: python27
 api_version: 1
-threadsafe: yes
+threadsafe: no
 
 default_expiration: 1h
 
@@ -48,6 +48,9 @@ libraries:
 
 handlers:
 
+  - url: /mail
+    script: feedback.py
+
   - url: /(.+)
     static_files: public/\1
     upload: public/(.*)
@@ -55,6 +58,8 @@ handlers:
   - url: /
     static_files: public/index.html
     upload: public/index.html
+
+
 
 skip_files:
   - ^(.*/)?app\.yaml
