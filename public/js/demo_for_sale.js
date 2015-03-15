@@ -19,7 +19,7 @@ $(function () {
     $.ajax({
         // Flickr API is SSL only:
         // https://code.flickr.net/2014/04/30/flickr-api-going-ssl-only-on-june-27th-2014/
-        url: 'https://picasaweb.google.com/data/feed/base/user/113878952227197152049/albumid/6105847094315419169?alt=json',
+        url: 'https://picasaweb.google.com/data/feed/base/user/114638103747249970399/albumid/6107211708477962593?alt=json',
         //data: {
         //    #format: 'json',
         //    #method: 'flickr.photosets.getPhotos',
